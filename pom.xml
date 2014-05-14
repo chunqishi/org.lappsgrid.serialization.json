@@ -4,7 +4,7 @@
 
     <groupId>org.lappsgrid</groupId>
     <artifactId>JsonSerialization</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <name>JsonSerialization: Json input / output format.</name>
     <description />
