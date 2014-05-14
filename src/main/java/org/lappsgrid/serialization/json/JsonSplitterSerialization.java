@@ -7,7 +7,7 @@ import org.lappsgrid.vocabulary.Annotations;
 /**
  * Created by shi on 5/13/14.
  */
-public class JsonSplitterWrapper extends JsonWrapper {
+public class JsonSplitterSerialization extends JsonSerialization {
     JSONObject json = null;
     JSONObject currentStep = null;
     JSONObject currentStepMeta = null;
@@ -24,13 +24,13 @@ public class JsonSplitterWrapper extends JsonWrapper {
     JSONArray lastStepAnnotations = null;
     JSONObject lastStepContains = null;
 
-    public JsonSplitterWrapper(String textjson) {
+    public JsonSplitterSerialization(String textjson) {
         super(textjson);
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("s");
     }
 
-    public JsonSplitterWrapper() {
+    public JsonSplitterSerialization() {
         super();
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("s");

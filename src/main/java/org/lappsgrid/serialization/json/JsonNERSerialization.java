@@ -1,21 +1,20 @@
 package org.lappsgrid.serialization.json;
 
-import org.json.JSONObject;
 import org.lappsgrid.vocabulary.Annotations;
 
 /**
  * Created by shi on 5/13/14.
  */
-public class JsonNERWrapper extends JsonWrapper {
+public class JsonNERSerialization extends JsonSerialization {
 
-    public JsonNERWrapper(String textjson) {
+    public JsonNERSerialization(String textjson) {
         super(textjson);
         this.setAnnotationType(Annotations.NE);
         this.setIdHeader("ner");
         this.setLastAnnotationType(Annotations.TOKEN);
     }
 
-    public JsonNERWrapper() {
+    public JsonNERSerialization() {
         super();
         this.setAnnotationType(Annotations.NE);
         this.setIdHeader("ner");

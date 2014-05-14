@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by shi on 5/14/14.
  */
-public class JsonWrapper {
+public class JsonSerialization {
     String type = null;
     String textValue = null;
     String producer = null;
@@ -33,7 +33,7 @@ public class JsonWrapper {
     JSONArray lastStepAnnotations = null;
     JSONObject lastStepContains = null;
 
-    public JsonWrapper(String textjson) {
+    public JsonSerialization(String textjson) {
         id = 0;
         json = new JSONObject(textjson);
         text = json.getJSONObject("text");
@@ -48,7 +48,7 @@ public class JsonWrapper {
         annotations = new JSONArray();
     }
 
-    public JsonWrapper() {
+    public JsonSerialization() {
         id = 0;
         json = new JSONObject();
         json.put("@context" , "http://vocab.lappsgrid.org/context-1.0.0.jsonld");

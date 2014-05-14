@@ -7,7 +7,7 @@ import org.lappsgrid.vocabulary.Annotations;
 /**
  * Created by shi on 5/13/14.
  */
-public class JsonTokenizerWrapper extends JsonWrapper {
+public class JsonTokenizerSerialization extends JsonSerialization {
     JSONObject json = null;
     JSONObject currentStep = null;
     JSONObject currentStepMeta = null;
@@ -24,14 +24,14 @@ public class JsonTokenizerWrapper extends JsonWrapper {
     JSONArray lastStepAnnotations = null;
     JSONObject lastStepContains = null;
 
-    public JsonTokenizerWrapper(String textjson) {
+    public JsonTokenizerSerialization(String textjson) {
         super(textjson);
         this.setAnnotationType(Annotations.TOKEN);
         this.setIdHeader("tok");
         this.setLastAnnotationType(Annotations.SENTENCE);
     }
 
-    public JsonTokenizerWrapper() {
+    public JsonTokenizerSerialization() {
         super();
         this.setAnnotationType(Annotations.TOKEN);
         this.setIdHeader("tok");
