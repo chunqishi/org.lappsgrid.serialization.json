@@ -3,6 +3,16 @@ org.lappsgrid.JsonSerialization
 
 Provide Json Wrapper / Serialization Package.
 
+### Maven Usage
+
+```xml
+     <dependency>
+            <groupId>org.lappsgrid</groupId>
+            <artifactId>JsonSerialization</artifactId>
+            <version>0.0.1</version>
+     </dependency>
+```
+
 ### JsonSerialization Model
 
 ```java
