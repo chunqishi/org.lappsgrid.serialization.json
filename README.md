@@ -36,7 +36,7 @@ Provide Json Wrapper / Serialization Package.
 
             for (TokenNameFinder nameFinder : nameFinders) {
                 Span [] partSpans = nameFinder.find(tokens);
-                for (Span span:partSpans){                                 // json newAnnotationWithType
+                for (Span span:partSpans){                                 // json create newAnnotationWithType
                     JSONObject annotation = json.newAnnotationWithType(span.getType(), tokenObjs.get(span.getStart()));
                 }
             }
@@ -50,7 +50,7 @@ Provide Json Wrapper / Serialization Package.
             json.setType("ner:opennlp");                                 // set type
 
             Span[] spans = find(new String[]{text});
-            for (Span span : spans) {                                    // set annotation
+            for (Span span : spans) {                                    // json create new annotation
                 JSONObject annotation = json.newAnnotationWithType(span.getType());
                 json.setWord(annotation, text);                          // set annotation feature word
                 json.setStart(annotation, 0);                            // set annotation text start
