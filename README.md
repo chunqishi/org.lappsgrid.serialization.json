@@ -3,6 +3,54 @@ org.lappsgrid.JsonSerialization
 
 Provide Json Wrapper / Serialization Package.
 
+### JsonSerialization Model
+
+```java
+            // JSON Serialization Model.
+        if (discriminator == Types.JSON) {                                  // 1st json.
+            String jsonstr = data.getPayload();
+            JsonNERSerialization json = new JsonNERSerialization(jsonstr);  // read json
+            json.setProducer(this.getClass().getName() + ":" + VERSION);    // set producer
+            json.setType("ner:opennlp");                                    // set type
+            List<JSONObject> tokenObjs = json.findLastAnnotations();        // find required last step annotations.
+            if (tokenObjs == null) {
+                String message = "Invalid JSON input. Expected annotation type: " + json.getLastAnnotationType();
+                logger.warn(message);
+                return DataFactory.error(message);
+            }
+
+            String[] tokens = new String[tokenObjs.size()];
+            for(int i = 0; i < tokens.length; i++ ) {
+                tokens[i] = json.getAnnotationTextValue(tokenObjs.get(i));  // read annotation text = text.sub(start, end)
+            }
+
+            for (TokenNameFinder nameFinder : nameFinders) {
+                Span [] partSpans = nameFinder.find(tokens);
+                for (Span span:partSpans){                                 // json newAnnotationWithType
+                    JSONObject annotation = json.newAnnotationWithType(span.getType(), tokenObjs.get(span.getStart()));
+                }
+            }
+            return DataFactory.json(json.toString());                     // json toString
+        } else if (discriminator == Types.TEXT)
+        {
+            String text = data.getPayload();
+            JsonNERSerialization json = new JsonNERSerialization();      // default constructor
+            json.setTextValue(text);                                     // set text value
+            json.setProducer(this.getClass().getName() + ":" + VERSION); // set producer
+            json.setType("ner:opennlp");                                 // set type
+
+            Span[] spans = find(new String[]{text});
+            for (Span span : spans) {                                    // set annotation
+                JSONObject annotation = json.newAnnotationWithType(span.getType());
+                json.setWord(annotation, text);                          // set annotation feature word
+                json.setStart(annotation, 0);                            // set annotation text start
+                json.setEnd(annotation, text.length());                  // set annotation text end
+            }
+            return DataFactory.json(json.toString());                    // json toString
+
+        }
+```
+
 ### JsonSplitterSerialization
 
 ```java
