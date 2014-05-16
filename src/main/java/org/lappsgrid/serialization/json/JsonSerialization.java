@@ -53,7 +53,6 @@ public class JsonSerialization {
     public JsonSerialization() {
         id = 0;
         json = new JSONObject();
-        json.put("@context" , "http://vocab.lappsgrid.org/context-1.0.0.jsonld");
         currentStep = new JSONObject();
         currentStepMeta = new JSONObject();
         contains = new JSONObject();
@@ -229,10 +228,11 @@ public class JsonSerialization {
     }
 
     public String toString(){
+        json.put("@context" , "http://vocab.lappsgrid.org/context-1.0.0.jsonld");
         contain.put("producer", producer);
-        contain.put("type", containType);
+        contain.put("type", type);
         text.put("@value", textValue);
-        contains.put(annotationType, contain);
+        contains.put(containType, contain);
         currentStepMeta.put("contains", contains);
         currentStep.put("metadata", currentStepMeta);
         currentStep.put("annotations", annotations);

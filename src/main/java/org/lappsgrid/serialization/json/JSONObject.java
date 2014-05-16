@@ -11,11 +11,14 @@ import java.util.Map;
 /**
  * Created by shi on 5/15/14.
  */
-public class JSONObject extends LinkedHashMap{
+public class JSONObject {
+
+    Map<String, Object> map = null;
+
     public JSONObject(String json){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            this.putAll((Map)mapper.readValue(json, Map.class));
+            map = (Map)mapper.readValue(json, Map.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,7 +27,7 @@ public class JSONObject extends LinkedHashMap{
     public String toString() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.writeValueAsString(this);
+            return mapper.writeValueAsString(this.map);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,10 +35,16 @@ public class JSONObject extends LinkedHashMap{
     }
 
     public JSONObject(Map map){
-        this.putAll(map);
+        this.map = map;
     }
 
-    public JSONObject(){}
+    public JSONObject(){
+        this.map = new LinkedHashMap<String, Object>();
+    }
+
+    public Object get(String key) {
+        return this.map.get(key);
+    }
 
     public String getString(String key) {
         Object val = this.get(key);
@@ -86,7 +95,7 @@ public class JSONObject extends LinkedHashMap{
     }
 
     public boolean has(String key) {
-        return this.containsKey(key);
+        return this.map.containsKey(key);
     }
 
     public JSONObject getJSONObject(String key){
@@ -98,7 +107,12 @@ public class JSONObject extends LinkedHashMap{
     }
 
     public JSONObject put(String key, Object obj) {
-        super.put(key, obj);
+        if(obj instanceof JSONArray) {
+            obj = ((JSONArray)obj).list;
+        } else if (obj instanceof JSONObject) {
+            obj = ((JSONObject)obj).map;
+        }
+        this.map.put(key, obj);
         return this;
     }
 

@@ -1,7 +1,6 @@
 package org.lappsgrid.serialization.json;
 
 import org.lappsgrid.vocabulary.Annotations;
-import org.lappsgrid.vocabulary.Features;
 
 /**
  * Created by shi on 5/13/14.

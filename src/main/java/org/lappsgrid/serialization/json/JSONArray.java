@@ -10,30 +10,56 @@ import java.util.Map;
 /**
  * Created by shi on 5/15/14.
  */
-public class JSONArray extends ArrayList {
+public class JSONArray {
+
+    List<Object> list = null;
 
     public JSONArray(List list){
-        this.addAll(list);
+        this.list = list;
     }
 
     public JSONArray(String json){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            this.addAll((List) mapper.readValue(json, List.class));
+            this.list  = (List) mapper.readValue(json, List.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public JSONArray(){}
+
+
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this.list);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public JSONArray(){
+        list = new ArrayList<Object>();
+    }
+
+    public Object get(int i) {
+        return this.list.get(i);
+    }
 
     public JSONArray put(Object obj) {
-        super.add(obj);
+        if(obj instanceof JSONArray) {
+            obj = ((JSONArray)obj).list;
+        } else if (obj instanceof JSONObject) {
+            obj = ((JSONObject)obj).map;
+        }
+        this.list.add(obj);
         return this;
     }
 
 
     public int length() {
-        return this.size();
+        return this.list.size();
     }
 
     public JSONObject getJSONObject(int i) {
