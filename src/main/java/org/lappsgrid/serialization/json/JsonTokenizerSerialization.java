@@ -1,7 +1,5 @@
 package org.lappsgrid.serialization.json;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.lappsgrid.vocabulary.Annotations;
 
 /**
@@ -10,6 +8,7 @@ import org.lappsgrid.vocabulary.Annotations;
 public class JsonTokenizerSerialization extends JsonSerialization {
     public JsonTokenizerSerialization(String textjson) {
         super(textjson);
+        this.setContainType(Annotations.TOKEN);
         this.setAnnotationType(Annotations.TOKEN);
         this.setIdHeader("tok");
         this.setLastAnnotationType(Annotations.SENTENCE);
@@ -17,6 +16,7 @@ public class JsonTokenizerSerialization extends JsonSerialization {
 
     public JsonTokenizerSerialization() {
         super();
+        this.setContainType(Annotations.TOKEN);
         this.setAnnotationType(Annotations.TOKEN);
         this.setIdHeader("tok");
         this.setLastAnnotationType(Annotations.SENTENCE);

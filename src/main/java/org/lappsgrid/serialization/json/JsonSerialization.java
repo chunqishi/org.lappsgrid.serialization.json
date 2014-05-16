@@ -1,7 +1,8 @@
 package org.lappsgrid.serialization.json;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
+
+import org.lappsgrid.vocabulary.Features;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public class JsonSerialization {
     String type = null;
+    String containType = null;
     String textValue = null;
     String producer = null;
     String annotationType = null;
@@ -67,7 +69,7 @@ public class JsonSerialization {
         ArrayList<JSONObject> lastAnnotations = null;
         if(steps.length() > 0) {
             for(int i = steps.length() - 1; i >= 0; i--) {
-                lastStep = (JSONObject)steps.get(i);
+                lastStep =  steps.getJSONObject(i);
                 lastStepMeta = lastStep.getJSONObject("metadata");
                 lastStepAnnotations = lastStep.getJSONArray("annotations");
                 lastStepContains = lastStepMeta.getJSONObject("contains");
@@ -99,6 +101,10 @@ public class JsonSerialization {
 
     public void setType(String typ) {
         type = typ;
+    }
+
+    public void setContainType(String ctyp) {
+        containType = ctyp;
     }
 
     public void setProducer(String prod) {
@@ -188,9 +194,12 @@ public class JsonSerialization {
         annotation.put("end", end);
     }
 
+    public void setLemma(JSONObject annotation, String lemma) {
+        setFeature(annotation, Features.LEMMA, lemma);
+    }
 
     public void setWord(JSONObject annotation, String word) {
-        setFeature(annotation, "word", word);
+        setFeature(annotation, Features.WORD, word);
     }
 
     public void setSentence(JSONObject annotation, String sentence) {
@@ -202,15 +211,15 @@ public class JsonSerialization {
     }
 
     public void setCategory(JSONObject annotation, String category) {
-        setFeature(annotation, "category", category);
+        setFeature(annotation, Features.PART_OF_SPEECH, category);
     }
 
     public void setFeature(JSONObject annotation, String name,  String value) {
-        Object features = annotation.opt("features");
+        JSONObject features = annotation.getJSONObject("features");
         if (features == null) {
             features = newFeatures(annotation);
         }
-        ((JSONObject)features).put(name, value);
+        features.put(name, value);
     }
 
     public JSONObject newFeatures(JSONObject annotation) {
@@ -221,7 +230,7 @@ public class JsonSerialization {
 
     public String toString(){
         contain.put("producer", producer);
-        contain.put("type", type);
+        contain.put("type", containType);
         text.put("@value", textValue);
         contains.put(annotationType, contain);
         currentStepMeta.put("contains", contains);

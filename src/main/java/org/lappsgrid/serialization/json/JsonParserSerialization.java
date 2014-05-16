@@ -1,6 +1,7 @@
 package org.lappsgrid.serialization.json;
 
 import org.lappsgrid.vocabulary.Annotations;
+import org.lappsgrid.vocabulary.Features;
 
 /**
  * Created by shi on 5/13/14.
@@ -9,6 +10,7 @@ public class JsonParserSerialization extends JsonSerialization {
 
     public JsonParserSerialization(String textjson) {
         super(textjson);
+        this.setContainType("parser");
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("parser");
         this.setLastAnnotationType(Annotations.SENTENCE);
@@ -16,6 +18,7 @@ public class JsonParserSerialization extends JsonSerialization {
 
     public JsonParserSerialization() {
         super();
+        this.setContainType("parser");
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("parser");
         this.setLastAnnotationType(Annotations.SENTENCE);

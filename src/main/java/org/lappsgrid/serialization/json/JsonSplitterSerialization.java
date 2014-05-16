@@ -1,21 +1,22 @@
 package org.lappsgrid.serialization.json;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.lappsgrid.vocabulary.Annotations;
+import org.lappsgrid.vocabulary.Features;
 
 /**
  * Created by shi on 5/13/14.
  */
 public class JsonSplitterSerialization extends JsonSerialization {
-     public JsonSplitterSerialization(String textjson) {
+    public JsonSplitterSerialization(String textjson) {
         super(textjson);
+        this.setContainType(Annotations.SENTENCE);
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("s");
     }
 
     public JsonSplitterSerialization() {
         super();
+        this.setContainType(Annotations.SENTENCE);
         this.setAnnotationType(Annotations.SENTENCE);
         this.setIdHeader("s");
     }
