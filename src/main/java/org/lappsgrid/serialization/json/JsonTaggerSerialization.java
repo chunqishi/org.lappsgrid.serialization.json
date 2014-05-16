@@ -19,7 +19,7 @@ public class JsonTaggerSerialization extends JsonSerialization {
     public JsonTaggerSerialization() {
         super();
         this.setContainType(Features.PART_OF_SPEECH);
-        this.setAnnotationType(Features.PART_OF_SPEECH);
+        this.setAnnotationType(Annotations.TOKEN);
         this.setIdHeader("pos");
         this.setLastAnnotationType(Annotations.TOKEN);
     }
