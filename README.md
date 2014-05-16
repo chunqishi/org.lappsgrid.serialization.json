@@ -9,7 +9,7 @@ Provide Json Wrapper / Serialization Package.
      <dependency>
             <groupId>org.lappsgrid</groupId>
             <artifactId>JsonSerialization</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
      </dependency>
 ```
 
