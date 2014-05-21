@@ -4,7 +4,7 @@
 
     <groupId>org.lappsgrid</groupId>
     <artifactId>JsonSerialization</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
 
     <name>JsonSerialization: Json input / output format.</name>
     <description />
@@ -19,7 +19,7 @@
         <url>https://github.com/chunqishi/org.lappsgrid.JsonSerialization</url>
         <connection>scm:git:https://github.com/chunqishi/org.lappsgrid.JsonSerialization.git</connection>
         <developerConnection>scm:git:https://github.com/chunqishi/org.lappsgrid.JsonSerialization.git</developerConnection>
-        <tag>v0.1</tag>
+        <tag>v0.0.4</tag>
     </scm>
     <distributionManagement>
         <repository>
