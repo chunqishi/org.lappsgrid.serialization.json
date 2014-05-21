@@ -227,12 +227,26 @@ public class JsonSerialization {
         return features;
     }
 
+    public JSONObject newContain(String containType) {
+        JSONObject contain = new JSONObject();
+        contain.put("producer", producer);
+        contain.put("type", type);
+        contains.put(containType, contain);
+        return contain;
+    }
+
+    public JSONObject getJSONObject() {
+        return json;
+    }
+
     public String toString(){
         json.put("@context" , "http://vocab.lappsgrid.org/context-1.0.0.jsonld");
         contain.put("producer", producer);
         contain.put("type", type);
         text.put("@value", textValue);
-        contains.put(containType, contain);
+        if(containType != null) {
+            contains.put(containType, contain);
+        }
         currentStepMeta.put("contains", contains);
         currentStep.put("metadata", currentStepMeta);
         currentStep.put("annotations", annotations);

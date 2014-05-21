@@ -9,7 +9,6 @@ public class JsonNERSerialization extends JsonSerialization {
 
     public JsonNERSerialization(String textjson) {
         super(textjson);
-        this.setContainType(Annotations.NE);
         this.setAnnotationType(Annotations.NE);
         this.setIdHeader("ner");
         this.setLastAnnotationType(Annotations.TOKEN);
@@ -17,7 +16,6 @@ public class JsonNERSerialization extends JsonSerialization {
 
     public JsonNERSerialization() {
         super();
-        this.setContainType(Annotations.NE);
         this.setAnnotationType(Annotations.NE);
         this.setIdHeader("ner");
         this.setLastAnnotationType(Annotations.TOKEN);
